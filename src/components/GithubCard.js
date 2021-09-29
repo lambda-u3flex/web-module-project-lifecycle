@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,6 +8,12 @@ import Typography from '@mui/material/Typography';
 import Followers from './Followers';
 
 const GithubCard = props => {
+    const [showingFollowers, setShowingFollowers] = useState(false);
+
+    const handleToggle = () => {
+        setShowingFollowers(!showingFollowers)
+    }
+
     return(
         <>
         <Card sx={{ 
@@ -22,7 +28,7 @@ const GithubCard = props => {
             }}>
             <CardMedia
                 component="img"
-                alt="tim marchant"
+                alt="github avatar"
                 height="300"
                 width="300"
                 image={props.myData.avatar_url}
@@ -33,23 +39,26 @@ const GithubCard = props => {
                     {props.myData.name}
                 </Typography>
                 <Typography variant="body2" color="#fff">
-                <a href="https://www.github.com/fromtimwithcode"
+                <a href={`https://www.github.com/${props.myData.login}`}
                     style={{ textDecoration: 'none', color: 'green', fontSize: '.8rem' }}>@{props.myData.login}</a>
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" style={{color:'green'}}>{props.myData.followers} Followers</Button>
+                {console.log(props.myData)}
+                <Button size="small" style={{color:'green'}} onClick={handleToggle}>{props.myData.followers} Followers</Button>
                 <Button size="small" style={{color:'green'}} onClick={() => {
-                    window.open("https://www.fromtimwithcode.com", "_blank")
+                    window.open(`${props.myData.blog}`, "_blank")
                 }}>Visit Website</Button>
             </CardActions>
             </div>
         </Card>
         <div>
-        <img src="http://ghchart.rshah.org/fromtimwithcode" alt="fromtimwithcode's Github chart" style={{marginTop: '1.5rem'}} />
+        <img src={`http://ghchart.rshah.org/${props.myData.login}`} alt="fromtimwithcode's Github chart" style={{marginTop: '1.5rem'}} />
         </div>
         <div className="followers-container">
-            <Followers followers={props.followerData} />
+            {showingFollowers
+                ? <Followers followers={props.followerData} />
+                : <div></div>}
         </div>
         </>
     )

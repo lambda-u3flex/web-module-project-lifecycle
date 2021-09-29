@@ -26,9 +26,9 @@ const Followers = (props) => {
                             </Typography>
                             </CardContent>
                             <CardActions>
-                            <Button size="small" style={{color:'green'}} onClick={() => {
-                                window.open(`${person.html_url}`, "_blank")
-                            }}>Visit Github</Button>
+                                <Button size="small" style={{color:'green'}} onClick={() => {
+                                    window.open(`${person.html_url}`, "_blank")
+                                }}>Visit Github</Button>
                             </CardActions>
                         </CardActionArea>
                         </Card>
