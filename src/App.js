@@ -5,15 +5,17 @@ import GithubCard from './components/GithubCard';
 
 class App extends Component {
   state = {
-    name: '',
-    username: '',
-    avatar: '',
-    website: '',
-    followers: '',
-    following: '',
-    followerUsername: '',
-    followerAvatar: '',
-    profileUrl: ''
+    myData: [],
+    followerData: []
+    // name: '',
+    // username: '',
+    // avatar: '',
+    // website: '',
+    // followers: '',
+    // following: '',
+    // followerUsername: '',
+    // followerAvatar: '',
+    // profileUrl: ''
   }
 
   componentDidMount() {
@@ -21,12 +23,7 @@ class App extends Component {
       .then(res => {
         this.setState({
           ...this.state,
-          name: res.data.name,
-          username: res.data.login,
-          avatar: res.data.avatar_url,
-          website: res.data.blog,
-          followers: res.data.followers,
-          following: res.data.following
+          myData: res.data
         })
       })
       .catch(err => {
@@ -37,9 +34,7 @@ class App extends Component {
       .then(res => {
         this.setState({
           ...this.state,
-          followerUsername: res.data.login,
-          followerAvatar: res.data.avatar_url,
-          profileUrl: res.data.html_url
+          followerData: res.data
         })
       })
       .catch(err => {
@@ -50,8 +45,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Github API</h1>
-        <GithubCard />
+        <GithubCard myData={this.state.myData} followerData={this.state.followerData} />
       </div>
     );
   }
