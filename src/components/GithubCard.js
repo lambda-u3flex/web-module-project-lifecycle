@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Followers from './Followers';
 
 const GithubCard = props => {
     return(
@@ -46,6 +47,9 @@ const GithubCard = props => {
         </Card>
         <div>
         <img src="http://ghchart.rshah.org/fromtimwithcode" alt="fromtimwithcode's Github chart" style={{marginTop: '1.5rem'}} />
+        </div>
+        <div className="followers-container">
+            <Followers followers={props.followerData} />
         </div>
         </>
     )

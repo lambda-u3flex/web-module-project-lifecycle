@@ -45,7 +45,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <GithubCard myData={this.state.myData} followerData={this.state.followerData} />
+        <GithubCard myData={this.state.myData} followerData={this.state.followerData} key={this.state.followerData.id} />
       </div>
     );
   }
