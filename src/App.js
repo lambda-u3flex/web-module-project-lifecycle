@@ -2,20 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import GithubCard from './components/GithubCard';
+import SearchBar from './components/SearchBar';
 
 class App extends Component {
   state = {
     myData: [],
     followerData: []
-    // name: '',
-    // username: '',
-    // avatar: '',
-    // website: '',
-    // followers: '',
-    // following: '',
-    // followerUsername: '',
-    // followerAvatar: '',
-    // profileUrl: ''
   }
 
   componentDidMount() {
@@ -45,6 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <SearchBar />
         <GithubCard myData={this.state.myData} followerData={this.state.followerData} />
       </div>
     );
